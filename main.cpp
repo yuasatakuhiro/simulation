@@ -3,6 +3,8 @@
 #include <array>
 #include <sprout/random.hpp>
 
+
+
 namespace Initial_value
 {
 constexpr int obj_num = 500;
@@ -12,6 +14,7 @@ constexpr float obj_mass = nbody_Mass/obj_num;
 
 using namespace Initial_value;
 
+/**/
 class Object
 {
 public:
