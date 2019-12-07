@@ -13,7 +13,7 @@ constexpr double obj_mass = nbody_Mass/obj_num;
 constexpr double radius = 1.0;
 constexpr double max_speed = 0.5;
 constexpr double soft_param = radius/100.0;
-constexpr double dt = 0.001;
+constexpr double dt = 0.01;
 }
 
 using namespace Initial_value;
@@ -106,7 +106,7 @@ public:
 
 inline std::ostream& operator<<(std::ostream& os,const Object& o)
 {
-    return os << o.velocity[0] << ',' << o.velocity[1] << ',' << o.velocity[2];
+    return os << o.position[0] << ' ' << o.position[1] << ' ' << o.position[2];
 }
 
 void set_randomval(n_body& body)
@@ -149,6 +149,7 @@ int main()
     double position[3];
     double velocity[3];
     double length;
+    int count;
     
     for(auto obj1 = body_1.obj.begin();obj1 != body_1.obj.end();obj1++)
     {
@@ -185,8 +186,9 @@ int main()
         
     }
     
-    for (int _ = 0;_<4000;_++)
+    for (int _ = 0;_<10000;_++)
     {
+       
         for(auto obj1 = body_1.obj.begin();obj1 != body_1.obj.end();obj1++)
         {
             for(int j=0;j<3;j++)
@@ -230,7 +232,16 @@ int main()
             obj.update_position();
         }
         
-        std::cout << body_1.K_enrgy()/body_1.P_enrgy() << std::endl;
+        count++;
+        if(count == 10)
+        {
+        for(auto& obj:body_1.obj)
+        {
+            std::cout << obj << std::endl;
+        }
+            count = 0;
+            std::cout << std::endl << std::endl;
+        }
     }
 
     
