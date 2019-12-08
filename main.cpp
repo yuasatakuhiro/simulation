@@ -4,6 +4,7 @@
 #include <array>
 #include <random>
 #include <cmath>
+#include <fstream>
 
 namespace Initial_value
 {
@@ -143,7 +144,10 @@ n_body body_1;
 
 int main()
 {
-    set_randomval(body_1);
+    /*set_randomval(body_1);
+    
+    std::ofstream of1("e_data.dat");
+    std::ofstream of2("KT.txt");
     
     double accel[3];
     double position[3];
@@ -237,12 +241,35 @@ int main()
         {
         for(auto& obj:body_1.obj)
         {
-            std::cout << obj << std::endl;
+            of1 << obj << std::endl;
         }
             count = 0;
-            std::cout << std::endl << std::endl;
+            of1 << std::endl << std::endl;
         }
+        
+        of2 << -body_1.K_enrgy()/body_1.P_enrgy() << std::endl;
+        std::cout << _ << std::endl;
     }
-
     
+    of1.close();of2.close();*/
+    
+    FILE* gp;
+    std::string kt;
+    
+    std::ifstream ifile("KT.txt");
+    gp = popen("/Applications/gnuplot.app/gnuplot","w");
+    
+    fprintf(gp,"set term gif animate\n");
+    fprintf(gp,"set view equal xyz\n");
+    fprintf(gp,"set output \"n_body3.gif\" \n");
+    for(int i = 0;i<1000;i++)
+    {
+        getline(ifile,kt);
+        //fprintf(gp,"splot [-1.2:1.2][-1.2:1.2][-1.2:1.2] -3 -3 -3 \n");
+        fprintf(gp,"set key title \"K/T = %s\" \n",kt.c_str());
+        fprintf(gp,"set title \"%f\"\n",10*dt*i);
+        fprintf(gp,"splot  [-1.2:1.2][-1.2:1.2][-1.2:1.2] \"e_data.dat\" index %d using 1:2:3 with points pt 6 ps 0.5\n",i);
+    }
+    
+    ifile.close();
 }
