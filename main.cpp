@@ -15,7 +15,7 @@ namespace Initial_value
     constexpr double radius = 1.0;
     constexpr double max_speed = 0.5;
     constexpr double soft_param = radius/100.0;
-    constexpr double dt = 0.001;
+    double dt = 0.001;
     }
 
 using namespace Initial_value;
@@ -310,10 +310,16 @@ void calibrate_pos_vel(n_body& body_1)
 }
 }
 
-n_body body_1;
+
 
 int main()
 {
+    n_body body_1;
+    Gnuplot gp;
+    gp << "set terminal png\n";
+    gp << "set output \"enegy_conserve.png\"\n";
+    gp << "set xlabel \"time\"\n";
+    gp << "set ylabel \"(E(t)-E(0))/E(0)\"\n";
     set_randomval(body_1);
     
     std::ofstream of1("e_data.dat");
@@ -325,12 +331,57 @@ int main()
     
     leap_frog::_update_vel(body_1);//速度をdt/2の時間分更新する
     
+    gp << "plot \"-\" with lines title \"dt = 0.001\", \"-\" with lines title \"dt = 0.01\", \"-\" with lines title \"dt = 0.005\"\n";
     
-    for(int i = 0;i<20000;i++)
-     {
-     leap_frog::leap_frog(body_1);
-     std::cout << body_1.K_enrgy()+body_1.P_enrgy() << std::endl;
-     }
+    for(int i = 0;i<2000;i++)
+    {
+        leap_frog::leap_frog(body_1);
+        std::string percent = std::to_string((body_1.K_enrgy()+body_1.P_enrgy()-E0)/E0*100);
+        gp << std::to_string(dt*(i+1))+", "+percent +'\n';
+    }
+    
+    gp << "e\n";
+    
+    dt = 0.01;
+    n_body body_2;
+    set_randomval(body_2);
+    
+    caliblation::calibrate_pos_vel(body_2);
+    
+    double E0_2 = body_2.K_enrgy()+body_2.P_enrgy();//初期のエネルギー
+    
+    leap_frog::_update_vel(body_2);//速度をdt/2の時間分更新する
+    
+    for(int i = 0;i<200;i++)
+    {
+        leap_frog::leap_frog(body_2);
+        std::string percent = std::to_string((body_2.K_enrgy()+body_2.P_enrgy()-E0_2)/E0_2*100);
+        gp << std::to_string(dt*(i+1))+", "+percent +'\n';
+    }
+    
+    gp << "e\n";
+    
+    dt = 0.005;
+    n_body body_3;
+    set_randomval(body_3);
+    
+    caliblation::calibrate_pos_vel(body_3);
+    
+    double E0_3 = body_3.K_enrgy()+body_3.P_enrgy();//初期のエネルギー
+    
+    leap_frog::_update_vel(body_3);//速度をdt/2の時間分更新する
+    
+    for(int i = 0;i<400;i++)
+    {
+        leap_frog::leap_frog(body_3);
+        std::string percent = std::to_string((body_3.K_enrgy()+body_3.P_enrgy()-E0_3)/E0_3*100);
+        gp << std::to_string(dt*(i+1))+", "+percent +'\n';
+    }
+    
+    gp << "e\n";
+    
+    
+    
     
     
     /*of1.close();of2.close();
