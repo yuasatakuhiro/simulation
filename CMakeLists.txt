@@ -8,5 +8,7 @@ add_subdirectory(./space_simulation)
 
 add_executable(simulation main.cpp)
 #target_include_directories(simulation PRIVATE ${EIGEN3_INCLUDE_DIR})
+#target_include_directories(simulation PRIVATE ./)
 target_include_directories(simulation PRIVATE /Users/yuasatakuhiroshi/Downloads/Sprout-master)
-#target_link_libraries(main.out )
+target_include_directories(simulation PRIVATE /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/include)
+#target_link_libraries(simulation gnuplot)
