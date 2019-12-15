@@ -9,13 +9,13 @@
 /*初期条件など*/
 namespace Initial_value
     {
-    constexpr int obj_num = 1000;
+    constexpr int obj_num = 10000;
     constexpr double nbody_Mass = 1.0;
     constexpr double obj_mass = nbody_Mass/obj_num;
     constexpr double radius = 1.0;
     constexpr double max_speed = 0.5;
     constexpr double soft_param = radius/100.0;
-    double dt = 0.001;
+    constexpr double dt = 0.001;
     }
 
 using namespace Initial_value;
@@ -24,6 +24,7 @@ using namespace Initial_value;
 class Object
 {
 public:
+    
     std::array<double,3> position{0,0,0}; //現在のposition
     std::array<double,3> velocity{0,0,0}; //現在からdt/2秒後のvelocity
     
@@ -121,7 +122,7 @@ public:
         double r = 0;
         double r_dr;
         int count = 0;
-        int num = (radius+1.0)/dr;
+        int num = (radius+0.3)/dr;
         
         std::vector<double> density;
         
@@ -310,75 +311,112 @@ void calibrate_pos_vel(n_body& body_1)
 }
 }
 
-
-
 int main()
 {
     n_body body_1;
     Gnuplot gp;
-    gp << "set terminal png\n";
-    gp << "set output \"enegy_conserve.png\"\n";
-    gp << "set xlabel \"time\"\n";
-    gp << "set ylabel \"(E(t)-E(0))/E(0)\"\n";
-    set_randomval(body_1);
+    gp << "set term gif animate";
+    gp << "set output \"density_dist.gif\"";
+    gp << "set xlabel \"radius\"";
+    gp << "set ylabel \"density\"";
     
-    std::ofstream of1("e_data.dat");
-    std::ofstream of2("KT.txt");
+    Gnuplot gp2;
+    gp2 << "set terminal png";
+    gp2 << "set output \"e_data.png\"";
+    gp2 << "set xlabel \"time\"";
+    gp2 << "set ylabel \"(E0-E(t))/E(0)*100\"";
+    gp2 << "set title \"Energy ratio\"";
+    
+    Gnuplot gp3;
+    gp3 << "set term gif animate";
+    gp3 << "set output \"n_body.gif\"";
+    gp3 << "set view equal xyz";
+    gp3 << "set ticslevel 0";
+    
+    Gnuplot gp4;
+    gp4 << "set terminal png";
+    gp4 << "set output \"energy.png\"";
+    gp4 << "set xlabel \"time\"";
+    gp4 << "set ylabel \"energy\"";
+    
+    
+    set_randomval(body_1);
     
     caliblation::calibrate_pos_vel(body_1);
     
-    double E0 = body_1.K_enrgy()+body_1.P_enrgy();//初期のエネルギー
+    std::vector<double> a = body_1.density_distribution(0.01);
+    gp << "set title \"t = 0\"";
+    gp << "plot[0:1.2][0:140] \"-\" with lines title \"density\"";
+    for(int i = 0;i<a.size();i++)
+    {
+        gp << std::to_string(i*0.01) +", "+std::to_string(a[i]);
+    }
+    gp << "e";
+    
+    double K = body_1.K_enrgy();double U = body_1.P_enrgy();
+    double berial = K/(-U);
+    double E0 = K+U; //初期のエネルギー
+    
+    gp2 << "plot[0:] \"-\" with lines";
+    gp2 << "0, 0";
+    
+    gp3 << "set key title \"K/|U| = "+std::to_string(berial)+"\"";
+    gp3 << "set title \"t = 0\"";
+    gp3 << "splot[-1.6:1.6][-1.6:1.6][-1.6:1.6] \"-\" with points pt 6 ps 0.5";
+    for(auto& obj1:body_1.obj)
+    {
+        gp3 << std::to_string(obj1.position[0])+", "+std::to_string(obj1.position[1])+", "+std::to_string(obj1.position[2]);
+    }
+    gp3 << "e";
+    
+    gp4 << "plot[0:] \"-\" with points";
+    gp4 << "0, "+std::to_string(K);gp4 << "0, "+std::to_string(U);gp4 << "0, "+std::to_string(E0);
     
     leap_frog::_update_vel(body_1);//速度をdt/2の時間分更新する
-    
-    gp << "plot \"-\" with lines title \"dt = 0.001\", \"-\" with lines title \"dt = 0.01\", \"-\" with lines title \"dt = 0.005\"\n";
-    
+    int count = 0;
     for(int i = 0;i<2000;i++)
     {
+        std::cout << i << std::endl;
+        count++;
         leap_frog::leap_frog(body_1);
-        std::string percent = std::to_string((body_1.K_enrgy()+body_1.P_enrgy()-E0)/E0*100);
-        gp << std::to_string(dt*(i+1))+", "+percent +'\n';
+        if (count == 10)
+        {
+            K = body_1.K_enrgy();U = body_1.P_enrgy();
+            berial = K/(-U);
+            double E_t = K+U;
+            std::string t = std::to_string(dt*(i+1));
+            
+            gp << "set title \"t = "+t+"\"";
+            gp3 << "set title \"t = "+t+"\"";
+            gp3 << "set key title \"K/|U| = "+std::to_string(berial)+"\"";
+            
+            gp << "plot[0:1.2][0:140] \"-\" with lines title \"density\"";
+            std::vector<double> a = body_1.density_distribution(0.01);
+            for(int J = 0;J<a.size();J++)
+            {
+                gp << std::to_string(J*0.01) +", "+std::to_string(a[J]);
+            }
+            gp << "e";
+            
+            gp2 << std::to_string(dt*(i+1))+", "+std::to_string((E0-E_t)/E0*100);
+            
+            gp3 << "set key title \"K/|U| = "+std::to_string(berial)+"\"";
+            gp3 << "set title \"t = "+std::to_string(dt*(i+1))+"\"";
+            gp3 << "splot[-1.6:1.6][-1.6:1.6][-1.6:1.6] \"-\" with points pt 6 ps 0.5";
+            for(auto& obj1:body_1.obj)
+            {
+                gp3 << std::to_string(obj1.position[0])+", "+std::to_string(obj1.position[1])+", "+std::to_string(obj1.position[2]);
+            }
+            gp3 << "e";
+            
+            gp4 << t+", "+std::to_string(K);gp4 << t+", "+std::to_string(U);gp4 << t+", "+std::to_string(E_t);
+            count = 0;
+        }
     }
     
-    gp << "e\n";
+    gp2 << "e";
+    gp4 << "e";
     
-    dt = 0.01;
-    n_body body_2;
-    set_randomval(body_2);
-    
-    caliblation::calibrate_pos_vel(body_2);
-    
-    double E0_2 = body_2.K_enrgy()+body_2.P_enrgy();//初期のエネルギー
-    
-    leap_frog::_update_vel(body_2);//速度をdt/2の時間分更新する
-    
-    for(int i = 0;i<200;i++)
-    {
-        leap_frog::leap_frog(body_2);
-        std::string percent = std::to_string((body_2.K_enrgy()+body_2.P_enrgy()-E0_2)/E0_2*100);
-        gp << std::to_string(dt*(i+1))+", "+percent +'\n';
-    }
-    
-    gp << "e\n";
-    
-    dt = 0.005;
-    n_body body_3;
-    set_randomval(body_3);
-    
-    caliblation::calibrate_pos_vel(body_3);
-    
-    double E0_3 = body_3.K_enrgy()+body_3.P_enrgy();//初期のエネルギー
-    
-    leap_frog::_update_vel(body_3);//速度をdt/2の時間分更新する
-    
-    for(int i = 0;i<400;i++)
-    {
-        leap_frog::leap_frog(body_3);
-        std::string percent = std::to_string((body_3.K_enrgy()+body_3.P_enrgy()-E0_3)/E0_3*100);
-        gp << std::to_string(dt*(i+1))+", "+percent +'\n';
-    }
-    
-    gp << "e\n";
     
     
     

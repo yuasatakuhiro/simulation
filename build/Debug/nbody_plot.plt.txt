@@ -1,0 +1,10 @@
+set term gif animate
+set output "density_dist.gif"
+set xlabel "radius"
+set ylabel "density"
+  
+do for [i=0:199] {
+my = sprintf("dt = %f",0.001*100*(i+1))
+set title my
+plot "density_dist.txt" index i using 1:2 with lines
+}
