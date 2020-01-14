@@ -9,23 +9,23 @@
 /* Begin PBXAggregateTarget section */
 		710D6E0095774921BA6A520D /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 6E2F8C647D554A6BA6708176 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = 8AA0CF7023A44E00A7A7C8D4 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
-				3FF5435D1BF84A93ADD9D0ED /* CMake Rules */,
+				38ABACC634D5402F83A03014 /* CMake Rules */,
 			);
 			dependencies = (
-				B88DAF1CAF8C4CDBAB2430E2 /* PBXTargetDependency */,
-				3D6F77CDD24F4AABBAE5DCF9 /* PBXTargetDependency */,
-				D9AD58DAE72E40D3A681D905 /* PBXTargetDependency */,
+				2257B20C56D64B529F021485 /* PBXTargetDependency */,
+				07B0AF2E0FA64260B0AB6416 /* PBXTargetDependency */,
+				15FFE61524BE41E3BF2B2CC9 /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
 		};
 		C9D8822179644D14B432838A /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 75DEE8330A7F4706A3631D2C /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = 1CB285D2B5524F5387F5A2DA /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
-				A3B6871EE5D34E749F0A856E /* CMake Rules */,
+				C04EDEBE00714E88AFA01215 /* CMake Rules */,
 			);
 			dependencies = (
 			);
@@ -35,152 +35,152 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		49B331247D384D3F80F9C811 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = C067A0833E7C4BF19ED0FCA8 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */; };
-		745533AD8915499DBB15FFCA /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */ = {isa = PBXBuildFile; fileRef = 1A4005CFD47E44DD9EFB40D6 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */; };
-		9E0D89E68AF2491C98AD04FF /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 0FE15ED6DEC846CA9D8F0D2A /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */; };
-		F619800D48924A6989154403 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */ = {isa = PBXBuildFile; fileRef = 7530FA8907F54B8196D80552 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */; };
+		0B55B9DC0B4F4E0CA6173A9B /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */ = {isa = PBXBuildFile; fileRef = 04EA69C1D2904F7AB0424347 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */; };
+		44B829A79CDC4B819EB558C2 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = B3EEF2CAF18C469D9D346C17 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */; };
+		A5571B931D114594A491DF15 /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = A25F980F1C2E4931B105F02F /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */; };
+		F0AE8EC3ED47471BAEB1DEE5 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */ = {isa = PBXBuildFile; fileRef = 17CDA3682462407986E7A8D0 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		209F5CCF0FB84F1BA09DB6D4 /* MinSizeRel */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = MinSizeRel;
-		};
-		81F1C00897A04B799500BA85 /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Release;
-		};
-		C64DE12DE3D04172B9E3BB9C /* RelWithDebInfo */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = RelWithDebInfo;
-		};
-		D8F3019F01DF49E1B93A8EB6 /* Debug */ = {
+		0720C3D9D54A41829E2D9806 /* Debug */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = Debug;
 		};
+		185719174D5D4E1485C87236 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		5C4DEF4149584575A91D43EB /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		A03BB502085B403996860168 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		0C1637F85C4E4ABFAD166B0E /* PBXContainerItemProxy */ = {
+		4F931111B3974442AF1495BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FB7E085492694B13A87DD984 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C9D8822179644D14B432838A;
 			remoteInfo = ZERO_CHECK;
 		};
-		4D8B18131341413C87D9E20C /* PBXContainerItemProxy */ = {
+		55358892096040C7B7A56A73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FB7E085492694B13A87DD984 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 436521FCD8CA405A9384CDA2;
 			remoteInfo = simulation;
 		};
-		8569396E9A4F4AE78E90A53A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FB7E085492694B13A87DD984 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1F3A356E4A1A4D52BDC9FA58;
-			remoteInfo = gnuplot;
-		};
-		9012A6F528C8421CBAFF6F15 /* PBXContainerItemProxy */ = {
+		7A2A5B63ADDA4F56B25B7056 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FB7E085492694B13A87DD984 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C9D8822179644D14B432838A;
 			remoteInfo = ZERO_CHECK;
 		};
+		E22CA16CEEF44F38B7C08D17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB7E085492694B13A87DD984 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F3A356E4A1A4D52BDC9FA58;
+			remoteInfo = gnuplot;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0FE15ED6DEC846CA9D8F0D2A /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		1A4005CFD47E44DD9EFB40D6 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gnuplot.cpp; path = space_simulation/src/gnuplot.cpp; sourceTree = SOURCE_ROOT; };
-		70F3374F09D746728C70E4DB /* simulation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = simulation; sourceTree = BUILT_PRODUCTS_DIR; };
-		714B8B5F3C7548CB88CE2BC6 /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		7530FA8907F54B8196D80552 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
-		C067A0833E7C4BF19ED0FCA8 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = space_simulation/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		E37C5BDA767F4BDDBAFD3FF1 /* gnuplot */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libgnuplot.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		04EA69C1D2904F7AB0424347 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gnuplot.cpp; path = space_simulation/src/gnuplot.cpp; sourceTree = SOURCE_ROOT; };
+		117686E974404CE2A3598A11 /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		17CDA3682462407986E7A8D0 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		5E4EBE5A822940EF8CBE9009 /* simulation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = simulation; sourceTree = BUILT_PRODUCTS_DIR; };
+		A25F980F1C2E4931B105F02F /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		B3EEF2CAF18C469D9D346C17 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = space_simulation/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		FED70B24F10F4BE49C0F158D /* gnuplot */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libgnuplot.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		028FCEA633C745068A57D6DF /* simulation */ = {
+		2C58043B071E4477B32FEE6A /* simulation */ = {
 			isa = PBXGroup;
 			children = (
-				3614F0F3650C4291BC61EFD3 /* Source Files */,
-				0FE15ED6DEC846CA9D8F0D2A /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */,
+				3DA47FC8A7424F45A79A0B7A /* Source Files */,
+				A25F980F1C2E4931B105F02F /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */,
 			);
 			name = simulation;
 			sourceTree = "<group>";
 		};
-		0F18F714740540D294EA8FD5 /* gnuplot */ = {
+		3DA47FC8A7424F45A79A0B7A /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				BA2E72D365D3418BB999CB5D /* Source Files */,
-				C067A0833E7C4BF19ED0FCA8 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */,
+				17CDA3682462407986E7A8D0 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		83EB5DB01E334EE99F86A8A9 /* gnuplot */ = {
+			isa = PBXGroup;
+			children = (
+				AC70DA2A5FFD4D2EAEC5DFC4 /* Source Files */,
+				B3EEF2CAF18C469D9D346C17 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/CMakeLists.txt */,
 			);
 			name = gnuplot;
 			sourceTree = "<group>";
 		};
-		1ADEDDAD14BE49B2855BBFCC /* Products */ = {
+		87A826446C9E4EF89BE2D653 = {
 			isa = PBXGroup;
 			children = (
-				E37C5BDA767F4BDDBAFD3FF1 /* gnuplot */,
-				70F3374F09D746728C70E4DB /* simulation */,
+				2C58043B071E4477B32FEE6A /* simulation */,
+				A4DE36292E5F4E1D97644187 /* ALL_BUILD */,
+				83EB5DB01E334EE99F86A8A9 /* gnuplot */,
+				8B0FFF55F5D74D28B332E414 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8B0FFF55F5D74D28B332E414 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FED70B24F10F4BE49C0F158D /* gnuplot */,
+				5E4EBE5A822940EF8CBE9009 /* simulation */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2F26A66AC6E2405EA423CD6C /* CMake Rules */ = {
+		A4DE36292E5F4E1D97644187 /* ALL_BUILD */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = "CMake Rules";
-			sourceTree = "<group>";
-		};
-		3614F0F3650C4291BC61EFD3 /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				7530FA8907F54B8196D80552 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */,
-			);
-			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		3658FE3406284FB79DE01E1A = {
-			isa = PBXGroup;
-			children = (
-				028FCEA633C745068A57D6DF /* simulation */,
-				73E0363BC0BE498F99D42F88 /* ALL_BUILD */,
-				0F18F714740540D294EA8FD5 /* gnuplot */,
-				1ADEDDAD14BE49B2855BBFCC /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		73E0363BC0BE498F99D42F88 /* ALL_BUILD */ = {
-			isa = PBXGroup;
-			children = (
-				2F26A66AC6E2405EA423CD6C /* CMake Rules */,
-				714B8B5F3C7548CB88CE2BC6 /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */,
+				BFE67ADF4F884BAA98B4567C /* CMake Rules */,
+				117686E974404CE2A3598A11 /* /Users/yuasatakuhiroshi/GitHub/simulation/CMakeLists.txt */,
 			);
 			name = ALL_BUILD;
 			sourceTree = "<group>";
 		};
-		BA2E72D365D3418BB999CB5D /* Source Files */ = {
+		AC70DA2A5FFD4D2EAEC5DFC4 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				1A4005CFD47E44DD9EFB40D6 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */,
+				04EA69C1D2904F7AB0424347 /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */,
 			);
 			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		BFE67ADF4F884BAA98B4567C /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,9 +188,9 @@
 /* Begin PBXNativeTarget section */
 		1F3A356E4A1A4D52BDC9FA58 /* gnuplot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F6FED703C4B4DEB9DC76C33 /* Build configuration list for PBXNativeTarget "gnuplot" */;
+			buildConfigurationList = D1860CCAAE844DC7B49D4C4A /* Build configuration list for PBXNativeTarget "gnuplot" */;
 			buildPhases = (
-				32B04B44570041DB9CFAD111 /* Sources */,
+				8C8C7B0095244DB798B29060 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -198,23 +198,23 @@
 			);
 			name = gnuplot;
 			productName = gnuplot;
-			productReference = E37C5BDA767F4BDDBAFD3FF1 /* gnuplot */;
+			productReference = FED70B24F10F4BE49C0F158D /* gnuplot */;
 			productType = "com.apple.product-type.library.static";
 		};
 		436521FCD8CA405A9384CDA2 /* simulation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 79681C4BBDA844EEBCA3042C /* Build configuration list for PBXNativeTarget "simulation" */;
+			buildConfigurationList = E8D28BA4D382448EBB855B28 /* Build configuration list for PBXNativeTarget "simulation" */;
 			buildPhases = (
-				6D7C82E0EB6946299DB524CC /* Sources */,
+				CFDFF914311C49408CD294A6 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				535AE7D7B0CB4E7DBCC66917 /* PBXTargetDependency */,
+				9344221BBBA94DE1A2CB7069 /* PBXTargetDependency */,
 			);
 			name = simulation;
 			productName = simulation;
-			productReference = 70F3374F09D746728C70E4DB /* simulation */;
+			productReference = 5E4EBE5A822940EF8CBE9009 /* simulation */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -226,18 +226,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1130;
 			};
-			buildConfigurationList = F81F6E31879F4AD39B038595 /* Build configuration list for PBXProject "space_simulation" */;
+			buildConfigurationList = 38046EDDC0784EC09297E722 /* Build configuration list for PBXProject "space_simulation" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				D8F3019F01DF49E1B93A8EB6 /* Debug */,
-				81F1C00897A04B799500BA85 /* Release */,
-				209F5CCF0FB84F1BA09DB6D4 /* MinSizeRel */,
-				C64DE12DE3D04172B9E3BB9C /* RelWithDebInfo */,
+				0720C3D9D54A41829E2D9806 /* Debug */,
+				185719174D5D4E1485C87236 /* Release */,
+				A03BB502085B403996860168 /* MinSizeRel */,
+				5C4DEF4149584575A91D43EB /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = 3658FE3406284FB79DE01E1A;
+			mainGroup = 87A826446C9E4EF89BE2D653;
 			projectDirPath = ../;
 			projectRoot = "";
 			targets = (
@@ -250,7 +250,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2EE83115091F41F49C0E358B = {
+		01287FF030474002975C78C7 = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -265,7 +265,22 @@
 exit 0";
 			showEnvVarsInLog = 0;
 		};
-		3FF5435D1BF84A93ADD9D0ED /* CMake Rules */ = {
+		1E287539CDF84A4A93BEBBBD = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		38ABACC634D5402F83A03014 /* CMake Rules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,22 +291,7 @@ exit 0";
 			shellScript = "make -C /Users/yuasatakuhiroshi/GitHub/simulation/build -f /Users/yuasatakuhiroshi/GitHub/simulation/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
 			showEnvVarsInLog = 0;
 		};
-		57CCF4CE584849ABA6AD7FA6 = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# shell script goes here
-exit 0";
-			showEnvVarsInLog = 0;
-		};
-		A3B6871EE5D34E749F0A856E /* CMake Rules */ = {
+		C04EDEBE00714E88AFA01215 /* CMake Rules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,209 +305,49 @@ exit 0";
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		32B04B44570041DB9CFAD111 /* Sources */ = {
+		8C8C7B0095244DB798B29060 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				745533AD8915499DBB15FFCA /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */,
+				0B55B9DC0B4F4E0CA6173A9B /* /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/src/gnuplot.cpp */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D7C82E0EB6946299DB524CC /* Sources */ = {
+		CFDFF914311C49408CD294A6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F619800D48924A6989154403 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */,
+				F0AE8EC3ED47471BAEB1DEE5 /* /Users/yuasatakuhiroshi/GitHub/simulation/main.cpp */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3D6F77CDD24F4AABBAE5DCF9 /* PBXTargetDependency */ = {
+		07B0AF2E0FA64260B0AB6416 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 436521FCD8CA405A9384CDA2 /* simulation */;
-			targetProxy = 4D8B18131341413C87D9E20C /* PBXContainerItemProxy */;
+			targetProxy = 55358892096040C7B7A56A73 /* PBXContainerItemProxy */;
 		};
-		535AE7D7B0CB4E7DBCC66917 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C9D8822179644D14B432838A /* ZERO_CHECK */;
-			targetProxy = 0C1637F85C4E4ABFAD166B0E /* PBXContainerItemProxy */;
-		};
-		B88DAF1CAF8C4CDBAB2430E2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C9D8822179644D14B432838A /* ZERO_CHECK */;
-			targetProxy = 9012A6F528C8421CBAFF6F15 /* PBXContainerItemProxy */;
-		};
-		D9AD58DAE72E40D3A681D905 /* PBXTargetDependency */ = {
+		15FFE61524BE41E3BF2B2CC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1F3A356E4A1A4D52BDC9FA58 /* gnuplot */;
-			targetProxy = 8569396E9A4F4AE78E90A53A /* PBXContainerItemProxy */;
+			targetProxy = E22CA16CEEF44F38B7C08D17 /* PBXContainerItemProxy */;
+		};
+		2257B20C56D64B529F021485 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9D8822179644D14B432838A /* ZERO_CHECK */;
+			targetProxy = 7A2A5B63ADDA4F56B25B7056 /* PBXContainerItemProxy */;
+		};
+		9344221BBBA94DE1A2CB7069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9D8822179644D14B432838A /* ZERO_CHECK */;
+			targetProxy = 4F931111B3974442AF1495BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07728B9259A44F60B41F3DA0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
-			};
-			name = Debug;
-		};
-		0978526445074A7EB3934A86 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
-			};
-			name = Release;
-		};
-		1376EE33E35C49999A3A8277 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		30D649E7D1404FCBB79CA375 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Debug;
-		};
-		35EA70D5451D461899E9A6B4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Release;
-		};
-		38D54B7187EC40D88F91EFFC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/yuasatakuhiroshi/Downloads/Sprout-master",/Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/include);
-				INSTALL_PATH = "";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CPLUSPLUSFLAGS = "   '-std=gnu++14'  ";
-				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = simulation;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Debug;
-		};
-		75D0297201B94A23AE13296D /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = ("/Users/yuasatakuhiroshi/Downloads/Sprout-master",/Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/include);
-				INSTALL_PATH = "";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=gnu++14'  ";
-				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = simulation;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		77C6DE4924DC4932ABF8FAB9 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
-			};
-			name = MinSizeRel;
-		};
-		894AE247B9644AB780D16BCB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Debug;
-		};
-		A0D7EA4D7C3041C8818584FF /* Release */ = {
+		03575B8679C7464B9282224A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -532,7 +372,7 @@ exit 0";
 			};
 			name = Release;
 		};
-		A2DCFC2B11AF46B2AE93D7CB /* MinSizeRel */ = {
+		13E1B65E0DCD4F5C950B4E9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -544,15 +384,60 @@ exit 0";
 				INSTALL_PATH = "";
 				OTHER_LDFLAGS = " ";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
+				PRODUCT_NAME = ALL_BUILD;
 				SECTORDER_FLAGS = "";
 				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
 			};
+			name = Release;
+		};
+		23F28360720B4D918488C01D /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/./include);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++14'  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = gnuplot;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/space_simulation;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
 			name = MinSizeRel;
 		};
-		AD3EB2FE63C343BDBE4E13F3 /* Debug */ = {
+		24120491BCFA42F1BA1C3AD0 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		4C78930AE2CC44528ED4E01A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -577,7 +462,17 @@ exit 0";
 			};
 			name = Debug;
 		};
-		B3685387983743B49150BDE7 /* RelWithDebInfo */ = {
+		52C77C4C8B5941E9B206CD9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
+			};
+			name = Debug;
+		};
+		614937A073234AB5A97B0AA9 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -589,7 +484,7 @@ exit 0";
 				INSTALL_PATH = "";
 				OTHER_LDFLAGS = " ";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = ZERO_CHECK;
 				SECTORDER_FLAGS = "";
 				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
 				USE_HEADERMAP = NO;
@@ -597,7 +492,32 @@ exit 0";
 			};
 			name = RelWithDebInfo;
 		};
-		D68F156F4CC54B97BB33E14E /* Release */ = {
+		7869F0BF8C214FDD84DB86D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/yuasatakuhiroshi/Downloads/Sprout-master",/Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/include);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "   '-std=gnu++14'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = simulation;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		8813EFD6A5574CE59B21A632 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -622,52 +542,7 @@ exit 0";
 			};
 			name = Release;
 		};
-		D8DB649B58474D76B86704D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Release;
-		};
-		E08608D6378E40CC8F8835B4 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = lib;
-				EXECUTABLE_SUFFIX = .a;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (/Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/./include);
-				INSTALL_PATH = "";
-				LIBRARY_STYLE = STATIC;
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++14'  ";
-				OTHER_LIBTOOLFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = gnuplot;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/space_simulation;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		E31FD728D67C4DCEAA526857 /* MinSizeRel */ = {
+		8C61C2D367034880833F2212 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -692,7 +567,27 @@ exit 0";
 			};
 			name = MinSizeRel;
 		};
-		EA1CCBB559E64B3E900E2442 /* RelWithDebInfo */ = {
+		A2123BEC057D4037B718876D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
+			};
+			name = Release;
+		};
+		AFD3297495834BE399C45945 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
+			};
+			name = MinSizeRel;
+		};
+		B3BA3EB477A349068D44A1C5 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -717,7 +612,42 @@ exit 0";
 			};
 			name = RelWithDebInfo;
 		};
-		EE05AE4EC7B54FBFA3C955DD /* RelWithDebInfo */ = {
+		BF6FF70E63C94258AE2723E3 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
+			};
+			name = RelWithDebInfo;
+		};
+		C03146459B8346C0A5761CDF /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/yuasatakuhiroshi/Downloads/Sprout-master",/Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/include);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=gnu++14'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = simulation;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		CAD5BAEA28C24EDE8039477A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -735,72 +665,142 @@ exit 0";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
 			};
-			name = RelWithDebInfo;
+			name = Debug;
 		};
-		F9A076B93D1241C9B2A945DF /* RelWithDebInfo */ = {
+		CC9E787FDC1649C3B8598710 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
-				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build/build;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
 			};
-			name = RelWithDebInfo;
+			name = MinSizeRel;
+		};
+		D55FE1BD7819454FBE467454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		E109F125A7AC4D6E8B84E2BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		FA72B47BFABA4D2CA078D4B1 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/yuasatakuhiroshi/GitHub/simulation/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5F6FED703C4B4DEB9DC76C33 /* Build configuration list for PBXNativeTarget "gnuplot" */ = {
+		1CB285D2B5524F5387F5A2DA /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD3EB2FE63C343BDBE4E13F3 /* Debug */,
-				A0D7EA4D7C3041C8818584FF /* Release */,
-				E08608D6378E40CC8F8835B4 /* MinSizeRel */,
-				EA1CCBB559E64B3E900E2442 /* RelWithDebInfo */,
+				CAD5BAEA28C24EDE8039477A /* Debug */,
+				D55FE1BD7819454FBE467454 /* Release */,
+				CC9E787FDC1649C3B8598710 /* MinSizeRel */,
+				614937A073234AB5A97B0AA9 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		6E2F8C647D554A6BA6708176 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		38046EDDC0784EC09297E722 /* Build configuration list for PBXProject "space_simulation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				894AE247B9644AB780D16BCB /* Debug */,
-				35EA70D5451D461899E9A6B4 /* Release */,
-				1376EE33E35C49999A3A8277 /* MinSizeRel */,
-				B3685387983743B49150BDE7 /* RelWithDebInfo */,
+				52C77C4C8B5941E9B206CD9B /* Debug */,
+				A2123BEC057D4037B718876D /* Release */,
+				AFD3297495834BE399C45945 /* MinSizeRel */,
+				BF6FF70E63C94258AE2723E3 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		75DEE8330A7F4706A3631D2C /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		8AA0CF7023A44E00A7A7C8D4 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30D649E7D1404FCBB79CA375 /* Debug */,
-				D8DB649B58474D76B86704D7 /* Release */,
-				A2DCFC2B11AF46B2AE93D7CB /* MinSizeRel */,
-				EE05AE4EC7B54FBFA3C955DD /* RelWithDebInfo */,
+				E109F125A7AC4D6E8B84E2BF /* Debug */,
+				13E1B65E0DCD4F5C950B4E9A /* Release */,
+				FA72B47BFABA4D2CA078D4B1 /* MinSizeRel */,
+				24120491BCFA42F1BA1C3AD0 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		79681C4BBDA844EEBCA3042C /* Build configuration list for PBXNativeTarget "simulation" */ = {
+		D1860CCAAE844DC7B49D4C4A /* Build configuration list for PBXNativeTarget "gnuplot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				38D54B7187EC40D88F91EFFC /* Debug */,
-				D68F156F4CC54B97BB33E14E /* Release */,
-				E31FD728D67C4DCEAA526857 /* MinSizeRel */,
-				75D0297201B94A23AE13296D /* RelWithDebInfo */,
+				4C78930AE2CC44528ED4E01A /* Debug */,
+				03575B8679C7464B9282224A /* Release */,
+				23F28360720B4D918488C01D /* MinSizeRel */,
+				B3BA3EB477A349068D44A1C5 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F81F6E31879F4AD39B038595 /* Build configuration list for PBXProject "space_simulation" */ = {
+		E8D28BA4D382448EBB855B28 /* Build configuration list for PBXNativeTarget "simulation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07728B9259A44F60B41F3DA0 /* Debug */,
-				0978526445074A7EB3934A86 /* Release */,
-				77C6DE4924DC4932ABF8FAB9 /* MinSizeRel */,
-				F9A076B93D1241C9B2A945DF /* RelWithDebInfo */,
+				7869F0BF8C214FDD84DB86D7 /* Debug */,
+				8813EFD6A5574CE59B21A632 /* Release */,
+				8C61C2D367034880833F2212 /* MinSizeRel */,
+				C03146459B8346C0A5761CDF /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

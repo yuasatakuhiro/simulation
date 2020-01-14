@@ -5,10 +5,11 @@
 #include <array>
 #include <random>
 #include <cmath>
+#include <functional>
 #include <gnuplot.hpp>
 #include <stdio.h>
 #include <stdlib.h>
-//#include <omp.h>
+#include <thread>
 
 /*初期条件など*/
 namespace Initial_value
@@ -22,7 +23,35 @@ namespace Initial_value
     constexpr double dt = 0.01; //時間の刻み幅
     }
 
+/*並列プログラム作成に必要な変数群*/
+namespace thread_valiable
+    {
+    /*使用スレッド数*/
+    constexpr int thread_count = 4; //default 1
+    
+    /*スレッドのtask数計算*/
+    constexpr int normal_task = Initial_value::N/thread_count;
+    //constexpr int extra_task = N%thread_count;
+    
+    /*並列計算するか否か*/
+    constexpr bool do_parallel(int thread_count)
+    {
+        if(thread_count > 1)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+    
+    constexpr bool _do_parallel = do_parallel(thread_count);
+    
+    }
+
 using namespace Initial_value;
+using namespace thread_valiable;
+
 
 class N_Body
 {
@@ -34,9 +63,25 @@ public:
     
     N_Body()
     {
-        for(auto& mass:Mass)
+        if(_do_parallel)
         {
-            mass = obj_mass;
+            int thread_count_1 = thread_count - 1;
+            std::vector<std::thread> threads;
+            int normal_task_ = normal_task;
+            for(int i = 0;i<thread_count_1;i++)
+            {
+                threads.emplace_back([this,i,normal_task_](){this -> _N_Body(i*normal_task_,(i+1)*normal_task_);});
+            }
+            
+            _N_Body(thread_count_1*normal_task_,N);
+            
+            for(auto& thread:threads)
+            {
+                thread.join();
+            }
+        }else
+        {
+            _N_Body(0, N);
         }
     }
     
@@ -69,200 +114,302 @@ public:
         
         return -0.5*P_E;
     }
+    
+    void VelocityVerlet_initialStep()
+    {
+        if(_do_parallel)
+        {
+            int thread_count_1 = thread_count - 1;
+            std::vector<std::thread> threads;
+            int normal_task_ = normal_task;
+            for(int i = 0;i<thread_count_1;i++)
+            {
+                threads.emplace_back([this,i,normal_task_](){this -> Ver_initial_accel(i*normal_task_,(i+1)*normal_task_);});
+            }
+            
+            this -> Ver_initial_accel(thread_count_1*normal_task_, N);
+            
+            for(auto& thread:threads)
+            {
+                thread.join();
+            }
+        }else
+        {
+            Ver_initial_accel(0, N);
+        }
+    }
+    
+    void VelocityVerlet_calculate()
+    {
+        if(_do_parallel)
+        {
+            int thread_count_1 = thread_count - 1;
+            std::vector<std::thread> threads;
+            int normal_task_ = normal_task;
+            for(int i = 0;i<thread_count_1;i++)
+            {
+                threads.emplace_back([this,i,normal_task_](){this -> update_position(i*normal_task_,(i+1)*normal_task_);});
+            }
+            
+            this -> update_position(thread_count_1*normal_task_, N);
+            
+            for(auto& thread:threads)
+            {
+                thread.join();
+            }
+        }else
+        {
+            update_position(0, N);
+        }
+        
+        if(_do_parallel)
+        {
+            int thread_count_1 = thread_count - 1;
+            std::vector<std::thread> threads;
+            int normal_task_ = normal_task;
+            for(int i = 0;i<thread_count_1;i++)
+            {
+                threads.emplace_back([this,i,normal_task_](){this -> velocity_verlet(i*normal_task_,(i+1)*normal_task_);});
+            }
+            
+            this -> velocity_verlet(thread_count_1*normal_task_, N);
+            
+            for(auto& thread:threads)
+            {
+                thread.join();
+            }
+        }else
+        {
+            velocity_verlet(0, N);
+        }
+    }
+    
+    void set_randomValue()
+    {
+        std::random_device seed_gen;
+        std::default_random_engine engine(seed_gen());
+        std::uniform_real_distribution<double> dist(0.0,2*radius);
+        std::uniform_real_distribution<double> dist2(0.0,2*max_speed);
+        
+        double r[3];
+        
+        for(auto& pos_row:this -> position)
+        {
+            do
+            {
+                for(int i = 0;i<3;i++)
+                {
+                    r[i] = radius - dist(engine);
+                }
+            }while(r[0]*r[0]+r[1]*r[1]+r[2]*r[2] > radius*radius);
+            
+            for(int i = 0;i<3;i++)
+            {
+                pos_row[i] = r[i];
+            }
+        }
+        
+        for(auto& vel_row:this -> velocity)
+        {
+            do
+            {
+                for(int i = 0;i<3;i++)
+                {
+                    r[i] = max_speed - dist2(engine);
+                }
+            }while(r[0]*r[0]+r[1]*r[1]+r[2]*r[2] > max_speed*max_speed);
+            
+            for(int i = 0;i<3;i++)
+            {
+                vel_row[i] = r[i];
+            }
+        }
+    }
+
+    void Initial_calibration()
+    {
+        double calibrated_val[3] = {};
+        
+        for(int i = 0;i<N-1;i++)
+        {
+            for(int j = 0;j<3;j++)
+            {
+                calibrated_val[j] += this -> position[i][j];
+            }
+        }
+        
+        for(int j = 0;j<3;j++)
+        {
+            this -> position[N-1][j] = calibrated_val[j];
+            calibrated_val[j] = 0;
+        }
+        
+        for(int i = 0;i<N-1;i++)
+        {
+            for(int j = 0;j<3;j++)
+            {
+                calibrated_val[j] += this -> velocity[i][j];
+            }
+        }
+        
+        for(int j = 0;j<3;j++)
+        {
+            this -> velocity[N-1][j] = calibrated_val[j];
+        }
+    }
+    
+private:
+    void parallel_calculation(std::function<void(int,int)> func)
+    {
+        if(_do_parallel)
+        {
+            int thread_count_1 = thread_count - 1;
+            std::vector<std::thread> threads;
+            int normal_task_ = normal_task;
+            for(int i = 0;i<thread_count_1;i++)
+            {
+                threads.emplace_back([func,i,normal_task_](){func(i*normal_task_,(i+1)*normal_task_);});
+            }
+            
+            func(thread_count_1*normal_task_,N);
+                
+            for(auto& thread:threads)
+            {
+                thread.join();
+            }
+            
+            }else
+            {
+                func(0,N);
+            }
+    }
+    
+    void _N_Body(int _i,int j)
+    {
+        for(int i = _i;i<j;i++)
+        {
+            this -> Mass[i] = obj_mass;
+        }
+    }
+    
+    void Ver_initial_accel(int _i,int end)
+    {
+        double accel[3];
+        double ri[3];double dr[3];
+        double ri2,mri5_2;
+        double eps2 = soft_param*soft_param;
+        
+        for(int i = _i;i<end;i++)
+        {
+            for(int j = 0;j<3;j++)
+            {
+                accel[j] = 0;
+                ri[j] = this -> position[i][j];
+            }
+            
+            for(int j = 0;j<N;j++)
+            {
+                if (i == j)
+                {
+                    continue;
+                }
+                
+                for(int k = 0;k<3;k++)
+                {
+                    dr[k] = this -> position[j][k]-ri[k];
+                }
+                
+                ri2 = 1.0/(dr[0]*dr[0]+dr[1]*dr[1]+dr[2]*dr[2]+eps2);
+                mri5_2 = this -> Mass[j]*ri2*sqrt(ri2);
+                
+                for(int k = 0;k<3;k++)
+                {
+                    accel[k] += mri5_2*dr[k];
+                }
+            }
+            
+            for(int j = 0;j<3;j++)
+            {
+                this -> accel[i][j] = accel[j];
+            }
+        }
+    }
+    
+    void update_position(int _i,int end)
+    {
+        for(int i = _i;i<end;i++)
+        {
+            for(int j = 0;j<3;j++)
+            {
+                this -> position[i][j] += this -> velocity[i][j]*dt+0.5*this -> accel[i][j]*dt*dt;
+            }
+        }
+    }
+    
+    void velocity_verlet(int _i,int end)
+    {
+        double accel[3];
+            double ri[3];double dr[3];
+            double ri2,mri5_2;
+            double eps2 = soft_param*soft_param;
+            
+            for(int i = _i;i<end;i++)
+            {
+                for(int j = 0;j<3;j++)
+                {
+                    accel[j] = 0;
+                    ri[j] = this -> position[i][j];
+                }
+                
+                for(int j = 0;j<N;j++)
+                {
+                    if (i == j)
+                    {
+                        continue;
+                    }
+                    
+                    for(int k = 0;k<3;k++)
+                    {
+                        dr[k] = this -> position[j][k]-ri[k];
+                    }
+                    
+                    ri2 = 1.0/(dr[0]*dr[0]+dr[1]*dr[1]+dr[2]*dr[2]+eps2);
+                    mri5_2 = this -> Mass[j]*ri2*sqrt(ri2);
+                    
+                    for(int k = 0;k<3;k++)
+                    {
+                        accel[k] += mri5_2*dr[k];
+                    }
+                }
+                
+                for(int j = 0;j<3;j++)
+                {
+                    this -> velocity[i][j] += 0.5*(this -> accel[i][j]+accel[j])*dt;
+                    this -> accel[i][j] = accel[j];
+                }
+            }
+        }
 };
-
-namespace Velocity_Verlet
-    {
-    void initial_accel(N_Body& body)
-    {
-        double accel[3];
-        double ri[3];double dr[3];
-        double ri2,mri5_2;
-        double eps2 = soft_param*soft_param;
-        
-        for(int i = 0;i<N;i++)
-        {
-            for(int j = 0;j<3;j++)
-            {
-                accel[j] = 0;
-                ri[j] = body.position[i][j];
-            }
-            
-            for(int j = 0;j<N;j++)
-            {
-                if (i == j)
-                {
-                    continue;
-                }
-                
-                for(int k = 0;k<3;k++)
-                {
-                    dr[k] = body.position[j][k]-ri[k];
-                }
-                
-                ri2 = 1.0/(dr[0]*dr[0]+dr[1]*dr[1]+dr[2]*dr[2]+eps2);
-                mri5_2 = body.Mass[j]*ri2*sqrt(ri2);
-                
-                for(int k = 0;k<3;k++)
-                {
-                    accel[k] += mri5_2*dr[k];
-                }
-            }
-            
-            for(int j = 0;j<3;j++)
-            {
-                body.accel[i][j] = accel[j];
-            }
-        }
-    }
-    
-    void velocity_verlet(N_Body& body)
-    {
-        double accel[3];
-        double ri[3];double dr[3];
-        double ri2,mri5_2;
-        double eps2 = soft_param*soft_param;
-        
-        for(int i = 0;i<N;i++)
-        {
-            for(int j = 0;j<3;j++)
-            {
-                body.position[i][j] += body.velocity[i][j]*dt+0.5*body.accel[i][j]*dt*dt;
-            }
-        }
-        
-        for(int i = 0;i<N;i++)
-        {
-            for(int j = 0;j<3;j++)
-            {
-                accel[j] = 0;
-                ri[j] = body.position[i][j];
-            }
-            
-            for(int j = 0;j<N;j++)
-            {
-                if (i == j)
-                {
-                    continue;
-                }
-                
-                for(int k = 0;k<3;k++)
-                {
-                    dr[k] = body.position[j][k]-ri[k];
-                }
-                
-                ri2 = 1.0/(dr[0]*dr[0]+dr[1]*dr[1]+dr[2]*dr[2]+eps2);
-                mri5_2 = body.Mass[j]*ri2*sqrt(ri2);
-                
-                for(int k = 0;k<3;k++)
-                {
-                    accel[k] += mri5_2*dr[k];
-                }
-            }
-            
-            for(int j = 0;j<3;j++)
-            {
-                body.velocity[i][j] += 0.5*(body.accel[i][j]+accel[j])*dt;
-                body.accel[i][j] = accel[j];
-            }
-        }
-    }
-    }
-
-void set_randomValue(N_Body& body)
-{
-    std::random_device seed_gen;
-    std::default_random_engine engine(seed_gen());
-    std::uniform_real_distribution<double> dist(0.0,2*radius);
-    std::uniform_real_distribution<double> dist2(0.0,2*max_speed);
-    
-    double r[3];
-    
-    for(auto& pos_row:body.position)
-    {
-        do
-        {
-            for(int i = 0;i<3;i++)
-            {
-                r[i] = radius - dist(engine);
-            }
-        }while(r[0]*r[0]+r[1]*r[1]+r[2]*r[2] > radius*radius);
-        
-        for(int i = 0;i<3;i++)
-        {
-            pos_row[i] = r[i];
-        }
-    }
-    
-    for(auto& vel_row:body.velocity)
-    {
-        do
-        {
-            for(int i = 0;i<3;i++)
-            {
-                r[i] = max_speed - dist2(engine);
-            }
-        }while(r[0]*r[0]+r[1]*r[1]+r[2]*r[2] > max_speed*max_speed);
-        
-        for(int i = 0;i<3;i++)
-        {
-            vel_row[i] = r[i];
-        }
-    }
-}
-
-void Initial_calibration(N_Body& body)
-{
-    double calibrated_val[3] = {};
-    
-    for(int i = 0;i<N-1;i++)
-    {
-        for(int j = 0;j<3;j++)
-        {
-            calibrated_val[j] += body.position[i][j];
-        }
-    }
-    
-    for(int j = 0;j<3;j++)
-    {
-        body.position[N-1][j] = calibrated_val[j];
-        calibrated_val[j] = 0;
-    }
-    
-    for(int i = 0;i<N-1;i++)
-    {
-        for(int j = 0;j<3;j++)
-        {
-            calibrated_val[j] += body.velocity[i][j];
-        }
-    }
-    
-    for(int j = 0;j<3;j++)
-    {
-        body.velocity[N-1][j] = calibrated_val[j];
-    }
-}
-
 
 int main()
 {
     N_Body body;
-    set_randomValue(body);
-    Initial_calibration(body);
-    Velocity_Verlet::initial_accel(body);
-    
+    body.set_randomValue();
+    body.Initial_calibration();
+    body.VelocityVerlet_initialStep();
+
     Gnuplot gp3;
     gp3 << "set term gif animate";
-    gp3 << "set output \"n_body.gif\"";
+    gp3 << "set output \"n_body_N0_dt0.01_pos30.gif\"";
     gp3 << "set view equal xyz";
     gp3 << "set ticslevel 0";
     
-    double sphere_pos = 5.0;
+    double sphere_pos = 30.0;
     
-    for(int i = 0;i<1000;i++)
+    for(int i = 0;i<3000;i++)
     {
         std::cout << i << std::endl;
-        Velocity_Verlet::velocity_verlet(body);
+        body.VelocityVerlet_calculate();
     }
     
     for(int i = 0;i<N-1;i++)
@@ -276,11 +423,12 @@ int main()
     for(int i = 0;i<3;i++)
     {
         body.position[N-1][i] = 0;
+        body.velocity[N-1][i] = 0;
     }
     
     body.Mass[N-1] = 100;
     
-    for(int i = 0;i<10000;i++)
+    for(int i = 0;i<100000;i++)
     {
         if(i%100 == 0)
         {
@@ -293,9 +441,8 @@ int main()
             gp3 << "e";
         }
         
-        Velocity_Verlet::velocity_verlet(body);
+        body.VelocityVerlet_calculate();
         
         std::cout << i << std::endl;
     }
 }
-

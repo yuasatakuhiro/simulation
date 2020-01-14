@@ -6,13 +6,10 @@ add_subdirectory(./space_simulation)
 
 #find_package(Eigen3 REQUIRED)
 
-
-#find_package(OpenMP REQUIRED)
-
 add_executable(simulation main.cpp)
+
 #target_include_directories(simulation PRIVATE ${EIGEN3_INCLUDE_DIR})
-#target_include_directories(simulation PRIVATE ./)
-#target_link_libraries(simulation PRIVATE OpenMP::OpenMP_CXX)
+
 target_include_directories(simulation PRIVATE /Users/yuasatakuhiroshi/Downloads/Sprout-master)
 target_include_directories(simulation PRIVATE /Users/yuasatakuhiroshi/GitHub/simulation/space_simulation/include)
 #target_link_libraries(simulation gnuplot)
