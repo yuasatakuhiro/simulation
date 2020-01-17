@@ -14,7 +14,7 @@
 /*初期条件など*/
 namespace Initial_value
     {
-    constexpr int N = 5000; //天体の数
+    constexpr int N = 2000; //天体の数
     constexpr double nbody_Mass = 1.0; //N体球の質量
     constexpr double obj_mass = nbody_Mass/N; //N体球を構成する個々の天体の質量
     constexpr double radius = 1.0; //N体球の半径
@@ -63,26 +63,19 @@ public:
     
     N_Body()
     {
-        if(_do_parallel)
-        {
-            int thread_count_1 = thread_count - 1;
-            std::vector<std::thread> threads;
-            int normal_task_ = normal_task;
-            for(int i = 0;i<thread_count_1;i++)
-            {
-                threads.emplace_back([this,i,normal_task_](){this -> _N_Body(i*normal_task_,(i+1)*normal_task_);});
-            }
-            
-            _N_Body(thread_count_1*normal_task_,N);
-            
-            for(auto& thread:threads)
-            {
-                thread.join();
-            }
-        }else
-        {
-            _N_Body(0, N);
-        }
+        parallel_calculation(std::bind(&N_Body::_N_Body,this,std::placeholders::_1,std::placeholders::_2));
+    }
+    
+    void VelocityVerlet_initialStep()
+    {
+        parallel_calculation(std::bind(&N_Body::Ver_initial_accel,this,std::placeholders::_1,std::placeholders::_2));
+    }
+    
+    void VelocityVerlet_calculate()
+    {
+        parallel_calculation(std::bind(&N_Body::update_position,this,std::placeholders::_1,std::placeholders::_2));
+        
+        parallel_calculation(std::bind(&N_Body::velocity_verlet,this,std::placeholders::_1,std::placeholders::_2));
     }
     
     double K_energy()
@@ -113,75 +106,6 @@ public:
         }
         
         return -0.5*P_E;
-    }
-    
-    void VelocityVerlet_initialStep()
-    {
-        if(_do_parallel)
-        {
-            int thread_count_1 = thread_count - 1;
-            std::vector<std::thread> threads;
-            int normal_task_ = normal_task;
-            for(int i = 0;i<thread_count_1;i++)
-            {
-                threads.emplace_back([this,i,normal_task_](){this -> Ver_initial_accel(i*normal_task_,(i+1)*normal_task_);});
-            }
-            
-            this -> Ver_initial_accel(thread_count_1*normal_task_, N);
-            
-            for(auto& thread:threads)
-            {
-                thread.join();
-            }
-        }else
-        {
-            Ver_initial_accel(0, N);
-        }
-    }
-    
-    void VelocityVerlet_calculate()
-    {
-        if(_do_parallel)
-        {
-            int thread_count_1 = thread_count - 1;
-            std::vector<std::thread> threads;
-            int normal_task_ = normal_task;
-            for(int i = 0;i<thread_count_1;i++)
-            {
-                threads.emplace_back([this,i,normal_task_](){this -> update_position(i*normal_task_,(i+1)*normal_task_);});
-            }
-            
-            this -> update_position(thread_count_1*normal_task_, N);
-            
-            for(auto& thread:threads)
-            {
-                thread.join();
-            }
-        }else
-        {
-            update_position(0, N);
-        }
-        
-        if(_do_parallel)
-        {
-            int thread_count_1 = thread_count - 1;
-            std::vector<std::thread> threads;
-            int normal_task_ = normal_task;
-            for(int i = 0;i<thread_count_1;i++)
-            {
-                threads.emplace_back([this,i,normal_task_](){this -> velocity_verlet(i*normal_task_,(i+1)*normal_task_);});
-            }
-            
-            this -> velocity_verlet(thread_count_1*normal_task_, N);
-            
-            for(auto& thread:threads)
-            {
-                thread.join();
-            }
-        }else
-        {
-            velocity_verlet(0, N);
-        }
     }
     
     void set_randomValue()
@@ -259,7 +183,7 @@ public:
     }
     
 private:
-    void parallel_calculation(std::function<void(int,int)> func)
+    void parallel_calculation(const std::function<void(int,int)>& func)
     {
         if(_do_parallel)
         {
@@ -282,7 +206,7 @@ private:
             {
                 func(0,N);
             }
-    }
+        }
     
     void _N_Body(int _i,int j)
     {
@@ -397,7 +321,7 @@ int main()
     body.set_randomValue();
     body.Initial_calibration();
     body.VelocityVerlet_initialStep();
-
+    
     Gnuplot gp3;
     gp3 << "set term gif animate";
     gp3 << "set output \"n_body_N0_dt0.01_pos30.gif\"";
@@ -410,6 +334,7 @@ int main()
     {
         std::cout << i << std::endl;
         body.VelocityVerlet_calculate();
+        std::cout << body.P_Energy() +  body.K_energy() << std::endl;
     }
     
     for(int i = 0;i<N-1;i++)
