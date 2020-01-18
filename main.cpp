@@ -31,7 +31,6 @@ namespace thread_valiable
     
     /*スレッドのtask数計算*/
     constexpr int normal_task = Initial_value::N/thread_count;
-    //constexpr int extra_task = N%thread_count;
     
     /*並列計算するか否か*/
     constexpr bool do_parallel(int thread_count)
@@ -52,6 +51,14 @@ namespace thread_valiable
 using namespace Initial_value;
 using namespace thread_valiable;
 
+class Dark_Matar_Halo
+{
+public:
+    double M (double r) const
+    {
+        return 104*(log(1+r)-1/(1+r));
+    }
+};
 
 class N_Body
 {
@@ -76,6 +83,64 @@ public:
         parallel_calculation(std::bind(&N_Body::update_position,this,std::placeholders::_1,std::placeholders::_2));
         
         parallel_calculation(std::bind(&N_Body::velocity_verlet,this,std::placeholders::_1,std::placeholders::_2));
+    }
+    
+    void VelocityVerlet_initialStep_withObject(const Dark_Matar_Halo& Object)
+    {
+        double ri[3];double len;double len3;double M_ri;
+        double eps2 = soft_param*soft_param;
+        
+        parallel_calculation(std::bind(&N_Body::Ver_initial_accel,this,std::placeholders::_1,std::placeholders::_2));
+        
+        for(int i = 0;i<N;i++)
+        {
+            for(int j = 0;j<3;j++)
+            {
+                ri[j] = position[i][j];
+            }
+            
+            len = sqrt(ri[0]*ri[0]+ri[1]*ri[1]+ri[2]*ri[2]+eps2);
+            len3 = len*len*len;
+            
+            M_ri = Object.M(len);
+            
+            for(int j = 0;j<3;j++)
+            {
+                accel[i][j] -= M_ri*ri[j]/len3;
+            }
+        }
+    }
+    
+    void VelocityVerlet_calculate_withObject(const Dark_Matar_Halo& Object)
+    {
+        parallel_calculation(std::bind(&N_Body::update_position,this,std::placeholders::_1,std::placeholders::_2));
+        
+        parallel_calculation(std::bind(&N_Body::velocity_verlet,this,std::placeholders::_1,std::placeholders::_2));
+        
+        double ri[3];double len;double len3;double M_ri;double Mri_len3;
+        double eps2 = soft_param*soft_param;
+        
+        for(int i = 0;i<N;i++)
+        {
+            for(int j = 0;j<3;j++)
+            {
+                ri[j] = position[i][j];
+            }
+            
+            len = sqrt(ri[0]*ri[0]+ri[1]*ri[1]+ri[2]*ri[2]+eps2);
+            len3 = len*len*len;
+            
+            M_ri = Object.M(len);
+            
+            Mri_len3 = M_ri/len3;
+            
+            for(int j = 0;j<3;j++)
+            {
+                velocity[i][j] += 0.5*dt*-Mri_len3*ri[j];
+                accel[i][j] += -Mri_len3*ri[j];
+            }
+        }
+        
     }
     
     double K_energy()
@@ -149,7 +214,7 @@ public:
             }
         }
     }
-
+    
     void Initial_calibration()
     {
         double calibrated_val[3] = {};
@@ -196,17 +261,17 @@ private:
             }
             
             func(thread_count_1*normal_task_,N);
-                
+            
             for(auto& thread:threads)
             {
                 thread.join();
             }
             
-            }else
-            {
-                func(0,N);
-            }
+        }else
+        {
+            func(0,N);
         }
+    }
     
     void _N_Body(int _i,int j)
     {
@@ -273,46 +338,46 @@ private:
     void velocity_verlet(int _i,int end)
     {
         double accel[3];
-            double ri[3];double dr[3];
-            double ri2,mri5_2;
-            double eps2 = soft_param*soft_param;
-            
-            for(int i = _i;i<end;i++)
+        double ri[3];double dr[3];
+        double ri2,mri5_2;
+        double eps2 = soft_param*soft_param;
+        
+        for(int i = _i;i<end;i++)
+        {
+            for(int j = 0;j<3;j++)
             {
-                for(int j = 0;j<3;j++)
+                accel[j] = 0;
+                ri[j] = this -> position[i][j];
+            }
+            
+            for(int j = 0;j<N;j++)
+            {
+                if (i == j)
                 {
-                    accel[j] = 0;
-                    ri[j] = this -> position[i][j];
+                    continue;
                 }
                 
-                for(int j = 0;j<N;j++)
+                for(int k = 0;k<3;k++)
                 {
-                    if (i == j)
-                    {
-                        continue;
-                    }
-                    
-                    for(int k = 0;k<3;k++)
-                    {
-                        dr[k] = this -> position[j][k]-ri[k];
-                    }
-                    
-                    ri2 = 1.0/(dr[0]*dr[0]+dr[1]*dr[1]+dr[2]*dr[2]+eps2);
-                    mri5_2 = this -> Mass[j]*ri2*sqrt(ri2);
-                    
-                    for(int k = 0;k<3;k++)
-                    {
-                        accel[k] += mri5_2*dr[k];
-                    }
+                    dr[k] = this -> position[j][k]-ri[k];
                 }
                 
-                for(int j = 0;j<3;j++)
+                ri2 = 1.0/(dr[0]*dr[0]+dr[1]*dr[1]+dr[2]*dr[2]+eps2);
+                mri5_2 = this -> Mass[j]*ri2*sqrt(ri2);
+                
+                for(int k = 0;k<3;k++)
                 {
-                    this -> velocity[i][j] += 0.5*(this -> accel[i][j]+accel[j])*dt;
-                    this -> accel[i][j] = accel[j];
+                    accel[k] += mri5_2*dr[k];
                 }
             }
+            
+            for(int j = 0;j<3;j++)
+            {
+                this -> velocity[i][j] += 0.5*(this -> accel[i][j]+accel[j])*dt;
+                this -> accel[i][j] = accel[j];
+            }
         }
+    }
 };
 
 int main()
@@ -328,30 +393,23 @@ int main()
     gp3 << "set view equal xyz";
     gp3 << "set ticslevel 0";
     
-    double sphere_pos = 30.0;
+    Dark_Matar_Halo Dark_Mater;
+    
+    double sphere_pos = 5;
     
     for(int i = 0;i<3000;i++)
     {
         std::cout << i << std::endl;
         body.VelocityVerlet_calculate();
-        std::cout << body.P_Energy() +  body.K_energy() << std::endl;
     }
     
-    for(int i = 0;i<N-1;i++)
+    for(int i = 0;i<N;i++)
     {
-        for(int j = 0;j<3;j++)
+        for(int j = 0;j<1;j++)
         {
             body.position[i][j] += sphere_pos;
         }
     }
-    
-    for(int i = 0;i<3;i++)
-    {
-        body.position[N-1][i] = 0;
-        body.velocity[N-1][i] = 0;
-    }
-    
-    body.Mass[N-1] = 100;
     
     for(int i = 0;i<100000;i++)
     {
@@ -366,7 +424,7 @@ int main()
             gp3 << "e";
         }
         
-        body.VelocityVerlet_calculate();
+        body.VelocityVerlet_calculate_withObject(Dark_Mater);
         
         std::cout << i << std::endl;
     }
